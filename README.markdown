@@ -6,6 +6,12 @@ Fork made to work with Viavansi Framework (J2EE6, Primefaces 2.2.1, JSF 2.0)
 
 ## Changelog ##
 
+### v.0.1-RC1 (April 18, 2011) ###
+
+* Added minified files
+* Adjusted vertical spacing for <code>PRE</code> elements
+* Added aliases for floating CSS helpers
+
 ### v.0.1-beta (March 22, 2011) ###
 
 First version. Basic funcionality:

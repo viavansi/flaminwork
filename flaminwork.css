@@ -1,11 +1,11 @@
 /* -------------------------------------------------------------------------------
-    Flaminwork CSS Framework
-    
-    Version:    0.1beta
-    Encoding:   UTF-8
-    Authors:    
-        Juan G. Hurtado     [juan.g.hurtado@gmail.com]
-        Álvaro Fernández    [creativo@alvarografico.es]
+	Flaminwork CSS Framework
+	
+	Version:	0.1-RC1
+	Encoding:	UTF-8
+	Authors:	
+		Juan G. Hurtado 	[juan.g.hurtado@gmail.com]
+		Álvaro Fernández 	[creativo@alvarografico.es]
 ----------------------------------------------------------------------------------
     Table of contents 
 ----------------------------------------------------------------------------------
@@ -156,6 +156,10 @@ body {
 ------------- */
 pre, code, kbd, samp {
     font-family: monospace, sans-serif;
+}
+
+pre {
+	margin-bottom: 1em;
 }
 
 /* =|Texts
@@ -437,12 +441,17 @@ div.msg, div.messages {
 
 /* =|Floats
 --------------- */
+<<<<<<< HEAD
 .left {
     float: left !important;
 }
 
 .right {
     float: right !important;
+}
+
+.float-none {
+	float: none !important;
 }
 
 /* =|Hidden
