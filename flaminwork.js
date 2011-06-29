@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------------------
 	Flaminwork Javascript Framework
 	
-	Version:	0.1-RC1
+	Version:	0.1-RC2
 	Encoding:	UTF-8
 	Authors:	
 		Juan G. Hurtado 	[juan.g.hurtado@gmail.com]
@@ -19,7 +19,7 @@ if (typeof jQuery != "undefined") {
 	/* =EXPAND BLOCKS
 	---------------------------------------------------------------------------------- */
 	var expand = {
-		init : function() {
+		init : function(callback) {
 			jQuery('.expand-wrapper').filter(function() {
 				return !jQuery(this).find('.expand-title').hasClass('closed') && !jQuery(this).find('.expand-title').hasClass('opened');
 			})
@@ -65,6 +65,10 @@ if (typeof jQuery != "undefined") {
 							element.parents('.expand-wrapper:first').toggleClass('current');
 						});
 					}
+				}
+				
+				if (typeof callback == "function") {
+					callback(jQuery(this), e);
 				}
 				
 				e.preventDefault();
