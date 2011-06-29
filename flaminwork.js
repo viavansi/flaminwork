@@ -388,7 +388,9 @@ if (typeof jQuery != "undefined") {
 
 /* Framework para componentes JSF */
 function handleComplete(xhr, status, args,f) {
-	if(args.isValid){
+	var isValid = args.isValid;
+	var validationFailed =args.validationFailed;
+	if(isValid || (isValid ==undefined && !validationFailed)){
 		f();
 	}
 }
