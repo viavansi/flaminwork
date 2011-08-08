@@ -104,7 +104,7 @@ if (typeof jQuery != "undefined") {
 			jQuery(elements).hover(function() {
 				jQuery(this).addClass('hover');
 			}, function() {
-				jQuery(this).removeClass('hover')
+				jQuery(this).removeClass('hover');
 			});
 		}
 	};
@@ -284,7 +284,7 @@ if (typeof jQuery != "undefined") {
 			}			
 		}
 		
-	}
+	};
 	
 	
 	/* =CUSTOM-VIAVANSI
