@@ -350,15 +350,15 @@ if (typeof jQuery != "undefined") {
 					var icononly = jQuery(this).hasClass('ui-button-icon-only');
 
 					if (icon != "") {
-						jQuery(this).button({
-							text : !icononly,
-							icons: {
-								primary: "ui-icon-"+ icon
-							}
-						});
+						jQuery(this)
+							.removeClass('ui-icon-'+ icon)
+							.button({
+								text : !icononly,
+								icons: {
+									primary: "ui-icon-"+ icon
+								}
+							});
 					} else {
-						var className = "";
-
 						if (jQuery(this).hasClass('ui-state-disabled')) {
 							jQuery(this).button({ disabled : true });
 						} else {
