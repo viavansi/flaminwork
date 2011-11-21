@@ -109,8 +109,12 @@ if (typeof jQuery != "undefined") {
 		}
 	};
 
-	/* =Funciones relativas a las tablas
+
+	/* =CUSTOM-VIAVANSI
 	---------------------------------------------------------------------------------- */
+
+	/* =|Tables
+	----------------------- */
 	var tables = {
 
 		init : function() {
@@ -286,98 +290,64 @@ if (typeof jQuery != "undefined") {
 
 	};
 
-
-	/* =CUSTOM-VIAVANSI
-	---------------------------------------------------------------------------------- */
+	/* =|Framework
+	----------------------- */
 	var framework = {
 
 		init : function() {
-			/* Inicialización de la funcionalidad del styleHelper
-			para añadir las clases CSS "first" y "last" */
 			styleHelper.firstLast('ul','li');
 			styleHelper.firstLast('ol','li');
 			styleHelper.firstLast('dl','dt');
 			styleHelper.firstLast('dl','dd');
 			styleHelper.firstLast('table','tr');
-
-			/* Inicialización de la funcionalidad del styleHelper
-				para añadir la clase CSS "odd" a elementos pares */
 			styleHelper.evenOdd('ul','li');
 			styleHelper.evenOdd('table tbody','tr');
-
-			/* Inicialización de la funcionalidad del styleHelper
-				para añadir la clase CSS "hover" a elementos por
-				los que pasemos por encima con el ratón */
 			styleHelper.addHover('li');
 			styleHelper.addHover('table tbody tr');
-
-			/* Añadimos el class="js" al BODY para saber que tenemos JS */
-			jQuery('body:not(.js)').addClass('js');
-
-			/* Inicializamos los expansores */
 			expand.init();
+			tables.init();
 
-			/* Eliminamos los botones de jQuery-ui de los botones con class="ui-link" */
 			if (typeof jQuery.fn.button != "undefined") {
-				jQuery('button.ui-link').css({
-					height: 'auto',
-					visibility: 'visible',
-					width: 'auto'
-				}).removeClass('ui-state-default');
-
-				var cssClass = jQuery('button.ui-link').attr('class');
-
+				/* Remove button style from buttons with class="ui-link" */
 				try{
-					jQuery('button.ui-link').button('destroy');
+					jQuery('button.ui-link')
+						.button('destroy')
+						.each(function() {
+							var reg = jQuery(this).attr('class').match(/ui-icon-([^\s]*)/);
+							var icon = reg?reg[0]:'';
 
-					jQuery('button.ui-link').each(function() {
-						var reg = jQuery(this).attr('class').match(/ui-icon-([^\s]*)/);
-						var icon = reg?reg[0]:'';
+							if (icon != "" && jQuery(this).find('.ui-icon').length <= 0) {
+								jQuery(this).prepend('<span class="ui-icon '+ icon +'"></span>');
+							}
+						});
+				} catch(e) {
+					console.log(e);
+				}
 
-
-						if (icon != "" && jQuery(this).find('.ui-icon').length <= 0) {
-							jQuery(this).prepend('<span class="ui-icon '+ icon +'"></span>');
-						}
-					}).show();
-				} catch(e) {}
-			}
-
-			/* Estilizamos los enlaces con class="ui-button" como botones, controlando si deben tener iconos */
-			if (typeof jQuery.fn.button != "undefined") {
+				/* Add button style to links with class="ui-button" */
 				jQuery('a,span').filter('.ui-button').each(function() {
 					var reg = jQuery(this).attr('class').match(/ui-icon-([^\s]*)/);
 					var icon = reg?reg[1]:'';
-					var icononly = jQuery(this).hasClass('ui-button-icon-only');
 
 					if (icon != "") {
 						jQuery(this)
 							.removeClass('ui-icon-'+ icon)
 							.button({
-								text : !icononly,
+								disabled : jQuery(this).hasClass('ui-state-disabled'),
+								text : !jQuery(this).hasClass('ui-button-icon-only'),
 								icons: {
-									primary: "ui-icon-"+ icon
+									primary: 'ui-icon-'+ icon
 								}
 							});
 					} else {
-						if (jQuery(this).hasClass('ui-state-disabled')) {
-							jQuery(this).button({ disabled : true });
-						} else {
-							jQuery(this).button();
-						}
+						jQuery(this).button({
+							disabled : jQuery(this).hasClass('ui-state-disabled')
+						});
 					}
 				});
-
-				jQuery('.ui-tabs-panel button.ui-link').hover(function() {
-					jQuery(this).removeClass('ui-state-hover');
-				},function() {
-					jQuery(this).removeClass('ui-state-hover');
-				}).find('.ui-button-text').remove();
 			}
 
-			/* Inicialización de la funcionalidad de las tablas */
-			tables.init();
-
-			/* Formateo numérico */
+			/* Numeric format */
 			if (typeof jQuery.fn.parseNumber == "function") {
 				jQuery('input.formatNumber').bind('blur', function() {
 					jQuery(this).parseNumber({format:"#,###.##", locale:LOCALE});
@@ -392,7 +362,8 @@ if (typeof jQuery != "undefined") {
 
 }
 
-/* Framework para componentes JSF */
+/* =JSF-STUFF
+---------------------------------------------------------------------------------- */
 function handleComplete(xhr, status, args,f) {
 	var isValid = args.isValid;
 	var validationFailed =args.validationFailed;
