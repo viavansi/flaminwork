@@ -310,16 +310,23 @@ if (typeof jQuery != "undefined") {
 			if (typeof jQuery.fn.button != "undefined") {
 				/* Remove button style from buttons with class="ui-link" */
 				try{
-					jQuery('button.ui-link')
-						.button('destroy')
-						.each(function() {
-							var reg = jQuery(this).attr('class').match(/ui-icon-([^\s]*)/);
-							var icon = reg?reg[0]:'';
+					jQuery('button.ui-link').each(function() {
+						var disabled = jQuery(this).hasClass('ui-state-disabled');
+						var reg = jQuery(this).attr('class').match(/ui-icon-([^\s]*)/);
+						var icon = reg?reg[0]:'';
 
-							if (icon != "" && jQuery(this).find('.ui-icon').length <= 0) {
-								jQuery(this).prepend('<span class="ui-icon '+ icon +'"></span>');
-							}
-						});
+						jQuery(this).button('destroy');
+
+						if (icon != "" && jQuery(this).find('.ui-icon').length <= 0) {
+							jQuery(this).prepend('<span class="ui-icon '+ icon +'"></span>');
+						}
+
+						if (disabled) {
+							jQuery(this)
+								.addClass('ui-state-disabled')
+								.attr('disabled', 'disabled');
+						}
+					});
 				} catch(e) {
 					console.log(e);
 				}
