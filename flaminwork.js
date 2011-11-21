@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------------------
 	Flaminwork Javascript Framework
-	
+
 	Version:	0.1-RC2
 	Encoding:	UTF-8
-	Authors:	
+	Authors:
 		Juan G. Hurtado 	[juan.g.hurtado@gmail.com]
 		Álvaro Fernández 	[creativo@alvarografico.es]
 -------------------------------------------------------------------------------------
@@ -15,7 +15,7 @@
 ---------------------------------------------------------------------------------- */
 
 if (typeof jQuery != "undefined") {
-	
+
 	/* =EXPAND BLOCKS
 	---------------------------------------------------------------------------------- */
 	var expand = {
@@ -42,12 +42,12 @@ if (typeof jQuery != "undefined") {
 
 				jQuery(this).toggleClass('closed');
 				jQuery(this).toggleClass('opened');
-				
+
 				element.toggleClass('visible');
 				element.toggleClass('hidden');
-				
+
 				var fade = element.hasClass('fade');
-				
+
 				if (element.css('display') == "none") {
 					element.parents('.expand-wrapper:first').toggleClass('current');
 					if (fade) {
@@ -66,16 +66,16 @@ if (typeof jQuery != "undefined") {
 						});
 					}
 				}
-				
+
 				if (typeof callback == "function") {
 					callback(jQuery(this), e);
 				}
-				
+
 				e.preventDefault();
 			});
 		}
 	};
-	
+
 	/* =STYLE HELPER
 	---------------------------------------------------------------------------------- */
 	var styleHelper = {
@@ -84,22 +84,22 @@ if (typeof jQuery != "undefined") {
 			jQuery(parent).each(function() {
 				jQuery(this).children(child +':first')
 					.addClass('first');
-				
+
 				jQuery(this).children(child +':last')
 					.addClass('last');
 			});
 		},
-		
+
 		evenOdd : function(parent, child) {
 			jQuery(parent).each(function() {
 				jQuery(this).children(child +':even')
 					.addClass('odd');
-				
+
 				jQuery(this).children(child +':odd')
 					.addClass('even');
 			});
 		},
-		
+
 		addHover : function(elements) {
 			jQuery(elements).hover(function() {
 				jQuery(this).addClass('hover');
@@ -108,28 +108,28 @@ if (typeof jQuery != "undefined") {
 			});
 		}
 	};
-	
+
 	/* =Funciones relativas a las tablas
 	---------------------------------------------------------------------------------- */
 	var tables = {
-			
+
 		init : function() {
 			tables.iconGroup.init();
 			tables.confirm.init();
 		},
-				
+
 		iconGroup : {
-			
+
 			deleteWrappers : function() {
 				jQuery('table tbody tr td span.icon-grouped-wrapper span.icon-grouped-links:visible').fadeOut();
 			},
-			
+
 			init : function() {
-				jQuery('table tbody td .icon-group').show().each(function() {
+				jQuery('table tbody td .icon-group').show().css('display','inline-block').each(function() {
 					if (jQuery(this).find('.icon-grouped-wrapper').length) {
 						return;
 					}
-					
+
 					jQuery(this).children()
 						.wrapAll('<span class="icon-grouped-wrapper"><span class="icon-grouped-links"></span></span>')
 						.wrap('<span class="icon-grouped-item"></span>')
@@ -142,18 +142,18 @@ if (typeof jQuery != "undefined") {
 							outline : 'none'
 						}).bind('click', function(e) {
 							tables.iconGroup.deleteWrappers();
-							
+
 							var $groupedLinks = jQuery(this).prev('span.icon-grouped-links');
-							
+
 							if ($groupedLinks.is(':visible')) {
 								$groupedLinks.fadeOut();
 							} else {
 								$groupedLinks.fadeIn();
 							}
-							
+
 							e.preventDefault();
 							e.stopPropagation();
-							
+
 							jQuery(document).bind('click', function() {
 								tables.iconGroup.deleteWrappers();
 								jQuery(document).unbind('click');
@@ -162,9 +162,9 @@ if (typeof jQuery != "undefined") {
 				});
 			}
 		},
-		
+
 		confirm : {
-			
+
 			// Config
 			fadeTimer			: 250,
 			blockClass 			: 'confirm-block',
@@ -176,67 +176,67 @@ if (typeof jQuery != "undefined") {
 			defaultText 		: '¿Está seguro?',
 			defaultAcceptText 	: 'Sí',
 			defaultCancelText 	: 'No',
-			
+
 			// Method to fade and remove all existing wrappers
 			deleteWrappers : function() {
 				jQuery('.'+ tables.confirm.wrapperClass).fadeOut(tables.confirm.fadeTimer, function() {
 					jQuery(this).remove();
 				});
 			},
-			
+
 			init : function(selector) {
 				selector = selector!=null && selector!=''?selector:tables.confirm.defaultSelector;
-				
+
 				// Loop through not processed items
 				jQuery(selector +':not(.processed)').each(function() {
-					
+
 					// Mark as processed
 					var $element = jQuery(this).addClass('processed');
-					
+
 					// On item click...
 					$element.bind('click', function(e) {
-						
+
 						// (*) Delete iconGroup bubbles
 						if (typeof tables != "undefined") {
 							tables.iconGroup.deleteWrappers();
 						}
-						
+
 						// 1.- Delete all existing wrappers
 						tables.confirm.deleteWrappers();
-						
+
 						// 2.- Get parent TR and TD
 						var $tr = jQuery(this).parents('tr:first'),
 							$td = jQuery(this).parents('td:first'),
-						
+
 						// 3.- Define styles for wrapper and block (positioning, dimensions, blah blah blah...)
 						divStyles = {
-							height 		: ($tr.height() + 2) +'px',
+							height 		: ($tr.height() - 1) +'px',
 							left 		: ($tr.offset().left - 1) +'px',
 							position 	: 'absolute',
 							top 		: ($tr.offset().top) +'px',
 							width 		: ($tr.width() + 2) +'px'
 						},
-						
+
 						confirmBlockStyles = {
-							height : ($tr.height() + 2) +'px',
+							height : ($tr.height() - 1) +'px',
 							position : 'absolute',
 							right : '0',
 							top : '-1px',
 							width : ($td[0].clientWidth + 20) + 'px'
 						},
-						
+
 						// 4.- Create wrapper
 						$confirmBlock = jQuery('<div />')
 							.addClass(tables.confirm.blockClass)
 							.css(confirmBlockStyles)
-							
+
 							// TEXT
 							.append(
 								jQuery('<span />')
 									.addClass(tables.confirm.textClass)
 									.text($element.attr('title')!=''?$element.attr('title'):tables.confirm.defaultText)
 							)
-							
+
 							// CANCEL
 							.append(jQuery('<a href="#" />')
 									.text(tables.confirm.defaultCancelText)
@@ -244,10 +244,10 @@ if (typeof jQuery != "undefined") {
 									.bind('click', function(e) {
 										// On "cancel" click: Delete all wrappers
 										tables.confirm.deleteWrappers();
-								
+
 										e.preventDefault();
 									}))
-							
+
 							// ACCEPT
 							.append(jQuery('<a />')
 									// Attach original behaviour to "accept" link
@@ -261,7 +261,7 @@ if (typeof jQuery != "undefined") {
 										}
 									})
 							);
-						
+
 						// 5.- Append wrapper to the body
 						$div = jQuery('<div />')
 							.addClass(tables.confirm.wrapperClass)
@@ -270,27 +270,27 @@ if (typeof jQuery != "undefined") {
 							.append($confirmBlock)
 							.appendTo('body')
 							.fadeIn(tables.confirm.fade);
-						
+
 						// 6.- Avoid default behaviour and bubbling
 						e.preventDefault();
 						e.stopPropagation();
-						
+
 						// 7.- Delete all existing "delete-block-wrapper" clicking anywhere on the document
 						jQuery(document).bind('click', function() {
 							tables.confirm.deleteWrappers();
 						});
 					});
 				});
-			}			
+			}
 		}
-		
+
 	};
-	
-	
+
+
 	/* =CUSTOM-VIAVANSI
 	---------------------------------------------------------------------------------- */
 	var framework = {
-			
+
 		init : function() {
 			/* Inicialización de la funcionalidad del styleHelper
 			para añadir las clases CSS "first" y "last" */
@@ -299,24 +299,24 @@ if (typeof jQuery != "undefined") {
 			styleHelper.firstLast('dl','dt');
 			styleHelper.firstLast('dl','dd');
 			styleHelper.firstLast('table','tr');
-			
+
 			/* Inicialización de la funcionalidad del styleHelper
 				para añadir la clase CSS "odd" a elementos pares */
 			styleHelper.evenOdd('ul','li');
 			styleHelper.evenOdd('table tbody','tr');
-			
+
 			/* Inicialización de la funcionalidad del styleHelper
 				para añadir la clase CSS "hover" a elementos por
 				los que pasemos por encima con el ratón */
 			styleHelper.addHover('li');
 			styleHelper.addHover('table tbody tr');
-			
+
 			/* Añadimos el class="js" al BODY para saber que tenemos JS */
 			jQuery('body:not(.js)').addClass('js');
-			
+
 			/* Inicializamos los expansores */
 			expand.init();
-			
+
 			/* Eliminamos los botones de jQuery-ui de los botones con class="ui-link" */
 			if (typeof jQuery.fn.button != "undefined") {
 				jQuery('button.ui-link').css({
@@ -324,31 +324,31 @@ if (typeof jQuery != "undefined") {
 					visibility: 'visible',
 					width: 'auto'
 				}).removeClass('ui-state-default');
-				
+
 				var cssClass = jQuery('button.ui-link').attr('class');
-				
+
 				try{
 					jQuery('button.ui-link').button('destroy');
-					
+
 					jQuery('button.ui-link').each(function() {
 						var reg = jQuery(this).attr('class').match(/ui-icon-([^\s]*)/);
 						var icon = reg?reg[0]:'';
-						
-						
+
+
 						if (icon != "" && jQuery(this).find('.ui-icon').length <= 0) {
 							jQuery(this).prepend('<span class="ui-icon '+ icon +'"></span>');
 						}
 					}).show();
 				} catch(e) {}
 			}
-			
+
 			/* Estilizamos los enlaces con class="ui-button" como botones, controlando si deben tener iconos */
 			if (typeof jQuery.fn.button != "undefined") {
-				jQuery('a').filter('.ui-button').each(function() {
+				jQuery('a,span').filter('.ui-button').each(function() {
 					var reg = jQuery(this).attr('class').match(/ui-icon-([^\s]*)/);
 					var icon = reg?reg[1]:'';
 					var icononly = jQuery(this).hasClass('ui-button-icon-only');
-					
+
 					if (icon != "") {
 						jQuery(this).button({
 							text : !icononly,
@@ -357,20 +357,26 @@ if (typeof jQuery != "undefined") {
 							}
 						});
 					} else {
-						jQuery(this).button();
+						var className = "";
+
+						if (jQuery(this).hasClass('ui-state-disabled')) {
+							jQuery(this).button({ disabled : true });
+						} else {
+							jQuery(this).button();
+						}
 					}
 				});
-				
+
 				jQuery('.ui-tabs-panel button.ui-link').hover(function() {
 					jQuery(this).removeClass('ui-state-hover');
 				},function() {
 					jQuery(this).removeClass('ui-state-hover');
 				}).find('.ui-button-text').remove();
 			}
-			
+
 			/* Inicialización de la funcionalidad de las tablas */
 			tables.init();
-			
+
 			/* Formateo numérico */
 			if (typeof jQuery.fn.parseNumber == "function") {
 				jQuery('input.formatNumber').bind('blur', function() {
@@ -383,7 +389,7 @@ if (typeof jQuery != "undefined") {
 			};
 		}
 	};
-	
+
 }
 
 /* Framework para componentes JSF */

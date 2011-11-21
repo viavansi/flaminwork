@@ -1,13 +1,13 @@
 /* -------------------------------------------------------------------------------
-	Flaminwork CSS Framework
-	
-	Version:	0.1-RC2
-	Encoding:	UTF-8
-	Authors:	
-		Juan G. Hurtado 	[juan.g.hurtado@gmail.com]
-		Álvaro Fernández 	[creativo@alvarografico.es]
+    Flaminwork CSS Framework
+
+    Version:    0.1-RC2
+    Encoding:   UTF-8
+    Authors:
+        Juan G. Hurtado     [juan.g.hurtado@gmail.com]
+        Álvaro Fernández    [creativo@alvarografico.es]
 ----------------------------------------------------------------------------------
-    Table of contents 
+    Table of contents
 ----------------------------------------------------------------------------------
     1.GLOBALS
         1.1.Reset styles
@@ -159,7 +159,7 @@ pre, code, kbd, samp {
 }
 
 pre {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 /* =|Texts
@@ -450,21 +450,18 @@ div.msg, div.messages {
 }
 
 .float-none {
-	float: none !important;
+    float: none !important;
 }
 
 /* =|Hidden
 ------------------- */
+.ui-tabs .ui-tabs-panel.ui-helper-hidden,
+.hide, .ui-helper-hidden {
+    display: none;
+}
+
 .hide {
-    display: block;
-    height: 1px;
-    left: -999em;
-    outline: 0;
-    position: absolute;
-    text-indent: -999em;
-    top: -999em;
-    visibility: hidden;
-    width: 1px;
+    display: none !important;
 }
 
 /* =|Displays
@@ -1001,7 +998,7 @@ ul.admin-menu {
         text-shadow: 1px 1px 0 #FFFFFF;
         width: 220px;
     }
-    
+
         ul.admin-menu li a {
             background: #f8f8f8;
             border: 1px solid #ccc;
@@ -1009,29 +1006,29 @@ ul.admin-menu {
             display: block;
             padding: 0.5em 1em;
             text-decoration: none;
-            
+
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px;
         }
-        
+
         ul.admin-menu li a:focus, ul.admin-menu li a:hover {
             background-color: #eee;
             border-color: #bbb;
         }
-        
+
             ul.admin-menu li a strong {
                 color: #5282b5;
                 display: block;
                 margin: 0.5em 0;
                 text-align: center;
             }
-        
+
             ul.admin-menu li a img {
                 display: block;
                 margin: 0 auto;
             }
-            
+
             ul.admin-menu li a em {
                 display: block;
                 font-size: 0.9em;
@@ -1044,9 +1041,14 @@ ul.admin-menu {
 -------------------------------------- */
 table td .icon-group {
     display: inline-block;
+    margin-left: 0.5em;
     position: relative;
     vertical-align: middle;
-} 
+}
+
+.js table td .icon-group {
+    display: none;
+}
 
 table td span.icon-grouped-trigger {}
 
@@ -1055,7 +1057,7 @@ table tbody tr td .icon-grouped-wrapper {
     display: inline-block;
     padding-left: 0.75em;
 }
-    
+
     table tbody tr td .icon-grouped-wrapper .icon-grouped-links:before {
         background: url(images/layout/icon-grouped-links-corner.png) no-repeat 0 0;
         content: 'test';
@@ -1067,7 +1069,7 @@ table tbody tr td .icon-grouped-wrapper {
         top: -10px;
         width: 19px;
     }
-    
+
     table tbody tr td .icon-grouped-wrapper .icon-grouped-links {
         background: #fff;
         border: 1px solid #f0f0f1;
@@ -1078,36 +1080,36 @@ table tbody tr td .icon-grouped-wrapper {
         top: 1.65em;
         width: 200px;
         z-index: 9;
-        
+
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
-        
+
         -webkit-box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff, 0 1px 2px rgba(0,0,0,.1);
         -moz-box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff, 0 1px 2px rgba(0,0,0,.1);
         box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff, 0 1px 2px rgba(0,0,0,.1);
     }
-    
+
         table tbody tr td .icon-grouped-wrapper .icon-grouped-links .icon-grouped-item {
             border-bottom: 1px dashed #E3E3E4;
             display: block;
             padding: 0.5em 0.25em;
         }
-        
+
         table tbody tr td .icon-grouped-wrapper .icon-grouped-links .icon-grouped-item:last-child {
             border-bottom: 0;
         }
-        
+
 /* =|confirm
 -------------------------------------- */
 .confirm-block-wrapper {
     background: url(images/layout/bg-red-lines.png) repeat 0 0;
     border: 1px solid #dfa0a0;
-    
+
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    
+
     -webkit-box-shadow: inset 1px 1px 0 rgba(255,255,255,.85), inset -1px -1px 0 rgba(255,255,255,.85);
     -moz-box-shadow: inset 1px 1px 0 rgba(255,255,255,.85), inset -1px -1px 0 rgba(255,255,255,.85);
     box-shadow: inset 0 1px 0 rgba(255,255,255,.85), inset -1px -1px 0 rgba(255,255,255,.85);
@@ -1120,14 +1122,14 @@ table tbody tr td .icon-grouped-wrapper {
     font-size: 0.9em;
     text-align: center;
     text-shadow: 1px 1px 0 rgba(0,0,0,.5);
-    
+
     -webkit-border-top-right-radius: 3px;
     -webkit-border-bottom-right-radius: 3px;
     -moz-border-radius-topright: 3px;
     -moz-border-radius-bottomright: 3px;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
-    
+
     -webkit-box-shadow: inset 1px 1px 0 rgba(255,255,255,.35), inset -1px -1px 0 rgba(255,255,255,.35);
     -moz-box-shadow: inset 1px 1px 0 rgba(255,255,255,.35), inset -1px -1px 0 rgba(255,255,255,.35);
     box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset -1px -1px 0 rgba(255,255,255,.35);
@@ -1139,7 +1141,7 @@ table tbody tr td .icon-grouped-wrapper {
     margin: 0.1em 1em;
     padding: 0.15em .75em;
     text-decoration: underline;
-    
+
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
@@ -1182,7 +1184,7 @@ ul.data {
         font-weight: bold;
         width: 20%;
     }
-    
+
     ul.data .value {
         display: block;
         float: left;
@@ -1198,7 +1200,7 @@ ul.data {
     margin-bottom: 1.5em;
     padding: 1em 1em 0 1em;
     text-shadow: 1px 1px #fff;
-    
+
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -1214,7 +1216,7 @@ ul.data {
         padding: 0;
         text-decoration: none;
     }
-    
+
     .box .box-content p {
         margin-left: 0;
         margin-right: 0;
@@ -1244,7 +1246,7 @@ body .ui-button-icons-only .ui-button-text {
 }
 
 body button.ui-button-icon-only {
-    
+
 }
 
 /* =|ui-link
@@ -1254,7 +1256,7 @@ body button.ui-button-icon-only {
     border: 0;
     display: inline-block;
     padding: 0.25em 0;
-    
+
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
@@ -1273,14 +1275,12 @@ button.ui-link {
         position: static !important;
         top: 50% !important;
     }
-    
+
 button.ui-link.has-image.ui-button-no-text {
-    width: 1.4em !important;
+    width: 1.25em !important;
 }
 
-.ui-link:focus, .ui-link:hover {
-    background: transparent;
-}
+.ui-link:focus, .ui-link:hover {}
 
 .ui-link.ui-button-no-text {
     padding: 0;
@@ -1359,32 +1359,41 @@ body .ui-icon {
     margin-bottom: 0;
 }
 
+    .ui-datatable th div.ui-dt-c, .ui-datatable .ui-datatable-data td div.ui-dt-c, .ui-datatable .ui-datatable-data-empty td div.ui-dt-c, .ui-datatable tfoot td div.ui-dt-c {
+        overflow: visible;
+        padding: 0;
+    }
+
+    .ui-datatable table .ui-widget-content {
+        border-color: #ddd;
+    }
+
     .ui-datatable table tr {
         border: 0;
     }
-    
+
     .ui-datatable .ui-datatable-data td {
         border: 0;
     }
-    
+
     .ui-datatable .ui-sortable-column-icon {
         float: none;
     }
-    
+
     /* Paginator */
     .ui-datatable .ui-paginator {
         overflow: hidden;
     }
-    
+
     .ui-paginator-current, .ui-paginator-rpp-options {
         margin: 0;
     }
-    
+
     /* Header/Footer */
     .ui-datatable .ui-datatable-header, .ui-datatable .ui-datatable-footer {
         overflow: hidden;
     }
-    
+
 /* =|ui-picklist
 -------------------------------------- */
 table.ui-picklist {
@@ -1397,16 +1406,16 @@ table.ui-picklist {
         border: 0;
         padding: 0;
     }
-    
+
     table.ui-picklist .ui-picklist-button {
         margin: 0.5em 2.5em;
     }
-    
+
     table.ui-picklist .ui-picklist-list {
         padding: 0;
         width: 395px;
     }
-    
+
 /* =|ui-tag
 -------------------------------------- */
 form .ui-tag {
@@ -1440,8 +1449,8 @@ form .ui-tag {
 }
 
 .ui-tag div.message div {
-	    display: inline;
-	}
+        display: inline;
+    }
 
 .ui-tag div.message .ui-message-info, .ui-tag div.message .ui-message-error, .ui-tag div.message .ui-message-warn, .ui-tag div.message .ui-message-fatal {
     background: transparent;
@@ -1464,12 +1473,12 @@ form .ui-tag {
         padding: 0;
         width: auto;
     }
-    
+
         .ui-tag-checkbox table td {
             border: 0;
             padding: 0;
         }
-        
+
             .ui-tag-checkbox table td label {
                 margin-left: 0.5em;
                 margin-right: 1.5em;
@@ -1483,17 +1492,17 @@ form .ui-tag {
 
 .ui-messages-info, .ui-messages-warn, .ui-messages-error, .ui-messages-fatal {
     border: 1px solid #ddd;
-    margin: 1.5em 0;
+    margin: 0 0 1.5em 0;
     padding: 1.25em 0.75em;
-    
+
     -webkit-box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff;
     -moz-box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff;
     box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #fff;
 }
 
 .ui-messages-info .ui-messages-info-icon,
-.ui-messages-error .ui-messages-error-icon, 
-.ui-messages-warn .ui-messages-warn-icon, 
+.ui-messages-error .ui-messages-error-icon,
+.ui-messages-warn .ui-messages-warn-icon,
 .ui-messages-fatal .ui-messages-fatal-icon {
     display: none;
 }
@@ -1545,6 +1554,57 @@ form .ui-tag {
         margin-left: 0;
         margin-right: 0;
     }
+
+/* =|ui-fileupload
+-------------------------------------- */
+.ui-fileupload {}
+
+    .ui-fileupload-preview img  {
+        background: none repeat scroll 0 0 #FFFFFF;
+	    border: 1px solid #EEEEEE;
+	    display: block;
+	    margin: 0;
+	    max-width: 100px;
+	    padding: 3px;
+	    width: auto;
+
+	    -webkit-border-radius: 5px;
+	    -moz-border-radius: 5px;
+	    border-radius: 5px;
+    }
+
+.ui-fileupload .ui-fileupload-browser {
+	display: inline-block;
+    height: auto;
+    line-height: 1.2;
+    padding: 0.35em 1em;
+    width: auto;
+}
+
+.ui-fileupload table.ui-fileupload-files,
+.ui-fileupload table.ui-fileupload-files td {
+	border: 0;
+	border-top: 1px solid #eee;
+    width: auto;
+}
+
+.ui-fileupload table.ui-fileupload-files td {
+    padding: 1em 0.5em;
+}
+
+.ui-fileupload .ui-widget-content {
+	background: #none;
+	border: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.ui-fileupload .ui-progressbar {
+    border: 1px solid #ccc;
+}
+
+.ui-fileupload .ui-fileupload-controls {
+    margin-bottom: 1em;
+}
 
 
 /* =INTERNET-EXPLORER
